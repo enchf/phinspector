@@ -1,4 +1,5 @@
-# Append the contents of the lib directory into the Ruby Load Path.
+# frozen_string_literal: true
+
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -22,7 +23,7 @@ Gem::Specification.new do |spec|
 
   ##
   # Development dependencies
-  spec.add_development_dependency 'bundler', '~> 1.16', '>= 1.16.3'
+  spec.add_development_dependency 'bundler', '~> 1.16', '>= 1.16.2'
   spec.add_development_dependency 'faker', '~> 1.9', '>= 1.9.1'
   spec.add_development_dependency 'minitest', '~> 5.11', '>= 5.11.3'
   spec.add_development_dependency 'rake', '~> 12.3', '>= 12.3.1'

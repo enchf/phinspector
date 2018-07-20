@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'escort'
+require 'commands/init'
+
+Escort::App.create do |app|
+  app.summary 'Phabricator inspector CLI'
+  app.command :init do |command|
+    command.summary 'Initialize a Phinspector session'
+    command.description 'Setup the workspace where to work with and synchronize with Phabricator'
+
+    command.options do |opts|
+      opts.opt :working_dir, 'Working Directory', short: '-d', long: '--working-dir', type: :string, required: true
+      opts.validate(:working_dir, 'Working directory not exists') { |working_dir| !File.exist?(working_dir) }
+    end
+
+    command.action { |opts, args| Phinspector::Init.new(opts, args) }
+  end
+end
